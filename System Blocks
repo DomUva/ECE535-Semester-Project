@@ -1,3 +1,7 @@
-1. Data Collection
-2. Model Training
-3. Analysis
+Sensor Data
+   |
+   V
+Client -> Trains Model
+               |
+               V
+      Server Model Updates
