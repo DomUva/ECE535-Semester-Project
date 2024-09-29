@@ -1,3 +1,3 @@
 With an increase in IoT devices and the constant collections of data can lead to significant challenges when trying to keep your data safe. By utilizing federated learning there can be
-multiple parties (varying sensor data) collaborating to train the model while keeping their respective data private. The project intends to utilize multimodal federated learning models to keep
-a high level of privacy while also enhancing the system performance.
+multiple parties (varying sensor data) collaborating to train the model while keeping their respective data private. The project intends to utilize multimodal federated learning models 
+to keep a high level of privacy while also enhancing the system performance.
