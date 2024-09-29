@@ -1,1 +1,12 @@
+Hardware Requirements:
+  Computer or other device to run the software on. 
 
+Software Requirements:
+  Anaconda 3
+  Python 3.7+
+  Pytorch 1.8+
+  Torchvision 0.9+
+  Numpy 1.19+
+  Matplotlib 3.3+
+  Scipy 1.4+
+  MPI for Python 3.0+
