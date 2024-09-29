@@ -1,1 +1,4 @@
-
+Understand multimodal federated learning.
+Use the given datasets to reproduce the results in the paper.
+Perform a per-class accuracy analysis of the results and observe the effect of skewed data distribution on the per-class accuracy.
+Evaluate the system on a multimodal dataset that is relatively balanced in class distribution.
