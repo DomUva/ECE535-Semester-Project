@@ -247,6 +247,9 @@ class Server:
             rpts = self.global_ae.encode(inputs, self.test_modality)
             output = self.global_sv(rpts)
 
+            #Calculate per class accuracy
+            
+
             loss = criterion(output, targets.long())
             top_p, top_class = output.topk(1, dim=1)
             equals = top_class == targets.view(*top_class.shape).long()
@@ -258,9 +261,12 @@ class Server:
             win_loss.append(loss.item())
             win_accuracy.append(accuracy)
             win_f1.append(weighted_f1)
+            
+            #Append per class cacuracy
 
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
 
         #return np.mean(win_loss), np.mean(win_accuracy), np.mean(win_weighted_f1)
-        return np.mean(win_loss), np.mean(win_accuracy), np.mean(weighted_f1)
+        #return np.mean(win_loss), np.mean(win_accuracy), np.mean(weighted_f1) <- The problem for going to 100 fscore
+        return np.mean(win_loss), np.mean(win_accuracy), np.mean(win_f1) # <- Return mean of per class accuracy

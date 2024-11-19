@@ -267,7 +267,7 @@ def load_data(config):
         assert (
             modality_A in modalities and modality_B in modalities), "Modality is not acce, gyro, or mage."
         #mat_data = loadmat(os.path.join(data_path, "mhealth", "mhealth.mat"))
-        mat_data = loadmat(r"C:\Users\Treys\.vscode\ECE535\iotdi22-mmfl\data\mhealth.mat")        
+        mat_data = loadmat(r"C:\Users\domin\Documents\ECE535Project\ECE535-Semester-Project\ProjectCode\data\mhealth\mhealth.mat")        
         # Randomely chooses 1 subject among all 10 subjects as testing data and the rest as training data
         s_test = np.random.randint(1, 11)
         data_train = {"A": [], "B": [], "y": []}

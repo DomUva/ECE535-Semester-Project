@@ -87,6 +87,7 @@ class FL:
                 result_table[row] = np.array(
                     (t+1, local_ae_loss, train_loss, train_accuracy, test_loss, test_accuracy, test_f1))
                 row += 1
+                print("Test F1: ", test_f1)
                 self.write_result(result_table)
 
     def write_result(self, result_table):
