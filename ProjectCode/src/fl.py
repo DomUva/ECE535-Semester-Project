@@ -31,6 +31,8 @@ class FL:
         client_train = data_train
         server_test = data_test
 
+        #Resize Data & Use counter function to count samples in each class
+
         # There is a small chance that the labels in the generated server_train are fewer than the labels in server_test.
         # If that happens, regenerate the server_train again until the sets of lables between them are the same.
         while True:
