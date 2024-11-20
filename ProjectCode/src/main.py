@@ -26,7 +26,7 @@ def read_config():
                             # help="name of the config file of simulation")
     # args = arg_parser.parse_args()
     config = configparser.ConfigParser()
-    config.read(r'C:\Users\Treys\.vscode\ECE535\iotdi22-mmfl\config\mhealth\ablation\acce_gyro\A30_B30_AB0_label_A_test_B')
+    config.read(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\config\opp\dccae\A0_B0_AB30_label_B_test_A')
     return config
 
 

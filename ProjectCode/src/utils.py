@@ -255,7 +255,8 @@ def load_data(config):
         modalities = ["acce", "gyro"]
         assert (
             modality_A in modalities and modality_B in modalities), "Modality is neither acce nor gyro."
-        mat_data = loadmat(os.path.join(data_path, "opp", "opp.mat"))
+        #mat_data = loadmat(os.path.join(data_path, "opp", "opp.mat"))
+        mat_data = loadmat(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\data\opp\opp.mat')
 
         data_train = {"A": zscore(mat_data[f"x_train_{modality_A}"]), "B": zscore(
             mat_data[f"x_train_{modality_B}"]), "y": np.squeeze(mat_data["y_train"])}
@@ -267,7 +268,7 @@ def load_data(config):
         assert (
             modality_A in modalities and modality_B in modalities), "Modality is not acce, gyro, or mage."
         #mat_data = loadmat(os.path.join(data_path, "mhealth", "mhealth.mat"))
-        mat_data = loadmat(r"C:\Users\Treys\.vscode\ECE535\iotdi22-mmfl\data\mhealth.mat")        
+        mat_data = loadmat(r"C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\data\mhealth\mhealth.mat")        
         # Randomely chooses 1 subject among all 10 subjects as testing data and the rest as training data
         s_test = np.random.randint(1, 11)
         data_train = {"A": [], "B": [], "y": []}
@@ -289,7 +290,8 @@ def load_data(config):
         modalities = ["acce", "rgb", "depth"]
         assert (
             modality_A in modalities and modality_B in modalities), "Modality is not acce, rgb, or depth."
-        mat_data = loadmat(os.path.join(data_path, "ur_fall", "ur_fall.mat"))
+        #mat_data = loadmat(os.path.join(data_path, "ur_fall", "ur_fall.mat"))
+        mat_data = loadmat(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\data\ur_fall\ur_fall.mat')
         fall_test = np.random.choice(range(1, 31), 3, replace=False)
         adl_test = np.random.choice(range(1, 41), 4, replace=False)
         data_train = {"A": [], "B": [], "y": []}
