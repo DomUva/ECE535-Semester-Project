@@ -26,7 +26,8 @@ def read_config():
                             # help="name of the config file of simulation")
     # args = arg_parser.parse_args()
     config = configparser.ConfigParser()
-    config.read(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\config\opp\dccae\A0_B0_AB30_label_B_test_A')
+    #config.read(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\config\mhealth\split_ae\acce_gyro\A0_B10_AB30_label_B_test_A')
+    config.read(r'C:\Users\Treys\.vscode\ECE535\ECE535-Semester-Project\ProjectCode\config\ur_fall\split_ae\acce_depth\A10_B10_AB30_label_A_test_B')
     return config
 
 

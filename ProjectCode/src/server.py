@@ -217,7 +217,7 @@ class Server:
             data_test: a dictionary containing testing data of modalities A&B and labels y.
 
         Returns:
-            A tuple containing loss and accuracy values
+            A tuple containing loss, accuracy, weighted F1 score, and per-class accuracy values
         """
         self.global_ae.eval()
         self.global_sv.eval()
@@ -236,9 +236,14 @@ class Server:
         n_samples = x_samples.shape[1]
         n_eval_process = n_samples // EVAL_WIN + 1
 
+        # Initialize variables for per-class accuracy
+        n_classes = self.n_classes
+        class_correct = np.zeros(n_classes)
+        class_total = np.zeros(n_classes)
+
         for i in range(n_eval_process):
             idx_start = i * EVAL_WIN
-            idx_end = np.min((n_samples, idx_start+EVAL_WIN))
+            idx_end = np.min((n_samples, idx_start + EVAL_WIN))
             x = x_samples[:, idx_start:idx_end, :]
             y = y_samples[:, idx_start:idx_end]
 
@@ -253,6 +258,13 @@ class Server:
             accuracy = torch.mean(equals.type(torch.FloatTensor))
             np_gt = y.flatten()
             np_pred = top_class.squeeze().cpu().detach().numpy()
+
+            # Update per-class counts
+            for label in range(n_classes):
+                label_mask = (np_gt == label)
+                class_correct[label] += np.sum((np_pred == label) & label_mask)
+                class_total[label] += np.sum(label_mask)
+
             weighted_f1 = f1_score(np_gt, np_pred, average="weighted")
 
             win_loss.append(loss.item())
@@ -262,5 +274,10 @@ class Server:
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
 
-        #return np.mean(win_loss), np.mean(win_accuracy), np.mean(win_weighted_f1)
-        return np.mean(win_loss), np.mean(win_accuracy), np.mean(weighted_f1)
+        # Calculate per-class accuracy
+        per_class_accuracy = np.divide(class_correct, class_total, out=np.zeros_like(class_correct), where=class_total != 0)
+        print("Per-class Accuracy:", per_class_accuracy)
+        print("Mean Per-class Accuracy:", np.mean(per_class_accuracy))
+
+        return np.mean(win_loss), np.mean(win_accuracy), np.mean(win_f1)
+
